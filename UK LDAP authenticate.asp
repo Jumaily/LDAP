@@ -1,4 +1,4 @@
-// University of KY LDAP authentication
+// Taha Al-jumaily -  University of KY LDAP authentication
 <%
 On Error Resume Next
 If Request.Form("strUsername") <> "" Then
