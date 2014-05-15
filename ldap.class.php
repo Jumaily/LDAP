@@ -1,5 +1,5 @@
 <?php
-
+# Taha Al-jumaily
 class ldap_auth{
    
    private $msg='';
