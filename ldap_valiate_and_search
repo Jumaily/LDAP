@@ -10,26 +10,26 @@ function ldap_valiate_and_search($u,$p,$domain){
    $server="LDAP://$domain.uky.edu";
    $ldapconn = ldap_connect($server);
    ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-	ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+   ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
 
    if($ldapconn){
       $ldapbind = ldap_bind($ldapconn,"$domain\\$u",$p);
       if($ldapbind){
-         print "<p> binded successfully to: $server</p>";
+        print "<p> binded successfully to: $server</p>";
 
-         $filter = "(&(objectClass=*)(cn=$u))";
-         $dn = "CN=$u,OU=Accounts,DC=$domain,DC=uky,DC=edu";
-         $nds_all = array("*"); # Show Everything
-         $nds = array("sn","givenname");
+        $filter = "(&(objectClass=*)(cn=$u))";
+        $dn = "CN=$u,OU=Accounts,DC=$domain,DC=uky,DC=edu";
+        $nds_all = array("*"); # Show Everything
+        $nds = array("sn","givenname");
 
-         $result = ldap_search($ldapconn, $dn, $filter, $nds);
-	       $info = ldap_get_entries($ldapconn, $result);
+        $result = ldap_search($ldapconn, $dn, $filter, $nds);
+	$info = ldap_get_entries($ldapconn, $result);
 
-         print "<pre>";
-			   print_r($info);
-         print "</pre>";
-		     }
+        print "<pre>";
+	print_r($info);
+        print "</pre>";
+	}
       else{ echo '<p>bind failure</p>'; }
       }
 
